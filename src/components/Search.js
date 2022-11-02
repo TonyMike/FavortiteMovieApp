@@ -1,17 +1,17 @@
 import React from 'react'
 import MovieStore from '../Utils/Store'
-function Search() {
 
-  const MovieStore = MovieStore()
-  console.log(MovieStore)
+function Search () {
+  const movieStore = MovieStore()
 
   return (
     <section className='layout-row justify-content-center mb-40'>
-      <input 
+      <input
         type='text'
-        placeholder='Search for movie by name' 
+        placeholder='Search for movie by name'
         className='w-75 py-2'
         data-testid='search'
+        onChange={e => movieStore.filterValue(e.target.value)}
       />
     </section>
   )
