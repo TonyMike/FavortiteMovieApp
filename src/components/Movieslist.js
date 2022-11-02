@@ -4,9 +4,14 @@ import MovieStore from '../Utils/Store'
 function Movieslist () {
   const movieStore = MovieStore()
 
-  const filteredMovies = movieStore.movies.filter(item => {
-    return item.name.toLowerCase().includes(movieStore.filter.toLowerCase())
-  })
+  const filteredMovies = movieStore.movies
+    .filter(item => {
+      return item.name.toLowerCase().includes(movieStore.filter.toLowerCase())
+    })
+    .sort((a, b) => {
+      return a.duration < b.duration ? 1 : -1
+    })
+
   return (
     <>
       {filteredMovies.length === 0 ? (
@@ -26,7 +31,7 @@ function Movieslist () {
                     {/* use this header for movie name */}
                     <h3 className='my-3'>{movie.name}</h3>
                     {/* use this paragraph for movie ratings, for example: 'Ratings: 88/100' */}
-                    <p className='my-0'>{movie.rating}</p>
+                    <p className='my-0'>Rating: {movie.rating}/100</p>
                   </div>
                   <div className='layout-row my-auto mr-20'>
                     {/* use this paragraph for movie duration, for example: '2.5 Hrs' */}
