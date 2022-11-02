@@ -33,6 +33,11 @@ function Movieform () {
               data-testid='nameInput'
               {...register('name')}
             />
+            {errors.name?.message && (
+              <div className='alert error ' data-testid='alert'>
+                {errors.name?.message}
+              </div>
+            )}
           </div>
           <div className='layout-column mb-15'>
             <label htmlFor='ratings' className='mb-3'>
@@ -45,6 +50,11 @@ function Movieform () {
               data-testid='ratingsInput'
               {...register('rating')}
             />
+            {errors.rating?.message && (
+              <div className='alert error ' data-testid='alert'>
+                {errors.rating?.message}
+              </div>
+            )}
           </div>
           <div className='layout-column mb-30'>
             <label htmlFor='duration' className='mb-3'>
@@ -53,18 +63,17 @@ function Movieform () {
             <input
               type='text'
               id='duration'
-              placeholder='Enter duration in hours or minutes'
+              placeholder='Enter duration only in minutes'
               data-testid='durationInput'
               {...register('duration')}
             />
+            {errors.duration?.message && (
+              <div className='alert error ' data-testid='alert'>
+                {errors.duration?.message}
+              </div>
+            )}
           </div>
-          {/* Use this div when time format is invalid */}
-          {/* <div
-            className='alert error mb-30'
-            data-testid='alert'
-          >
-            Please specify time in hours or minutes (e.g. 2.5h or 150m)
-          </div>  */}
+
           <div className='layout-row justify-content-end'>
             <button type='submit' className='mx-0' data-testid='addButton'>
               Add Movie
